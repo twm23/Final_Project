@@ -1,0 +1,31 @@
+@startuml
+
+actor Driver
+participant "Touch Screen" as ts
+participant "Toll Booth" as tb
+participant "Credit Card Reader" as ccr
+participant "Station Server" as ss
+participant "Barrier" as b
+participant "Car Passing Sensor" as s
+
+Driver -> ts : Select Vehicle Type
+ts -> tb : vehicleType
+tb -> tb : checkin(vehicleType)
+tb -> ccr : readCreditCard()
+ccr --> tb : creditCardInfo
+
+tb -> ss ++: processPayment(creditCardInfo)
+return : isPaymentSuccessful
+
+
+tb -> b --++ : raiseBarrier()
+return barrier raised
+
+tb -> s ++: awaitCarPassing()
+return carPassed
+tb -> b ++: lowerBarrier()
+return barrier lowered
+
+
+
+@enduml

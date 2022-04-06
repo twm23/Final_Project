@@ -2,19 +2,25 @@
 left to right direction
 
 class TollLaneComputer {
-    {method} +chooseVehicleType()
+    {method} +checkIn(vehicleType: VehicleType)
+    {method} +printTicket(ticket: Ticket)
+    {method} +raiseBarrier()
+    {method} +lowerBarrier()
+    {method} +processPayment(creditCardInfo: CreditCard)
+    {method} +readCreditCard()
 }
+
 
 ' class StationServer {
 '     {method} +processCreditCardPayment()
 ' }
 
-' class EnterpriseServer {
+' class EnterpriseServer { 
 '     {method} +processPayment()
 ' }
 
 class TicketPrinter { 
-    {method} +printTicket()
+    {method} +printTicket(ticket: Ticket)
 }
 
 class Barrier {
@@ -36,11 +42,11 @@ interface BarrierToTollLaneComputer {
 }
 
 interface StationServerToTollLaneComputer {
-    {method} +processPayment()
+    {method} +processPayment(creditCardInfo: CreditCard)
 }
 
 interface CreditCardReaderToTollLaneComputer {
-    {method} +processCreditCard()
+    {method} +readCreditCard()
 }
 
 TicketPrinter .l.|> TicketPrinterToTollLaneComputer

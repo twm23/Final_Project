@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+
+enum VehicleType {
+    Car
+    Truck
+    Motorbike
+}
+
+class Ticket {
+    {field} +vehicleType: VehicleType
+    {field} +issueTime: DateTime
+    {field} +isValid: Boolean
+}
+
+class CreditCard {
+    {field} +cardNumber: String
+    {field} +pin: String
+}
+
+@enduml 

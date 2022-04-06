@@ -1,0 +1,63 @@
+@startuml
+
+class TollLaneComputer {
+    {field} vehicleType
+    {field} creditCardInfo
+    {field} ticket
+    {field} isBarrierUp
+    {field} wasPaymentSuccessful
+    {field} isBusy
+    {method} +checkIn(vehicleType: VehicleType)
+    {method} +readCreditCard()
+    {method} +processPayment(creditCardInfo: CreditCard): Boolean
+    {method} +printTicket(ticket: Ticket)
+    {method} +raiseBarrier()
+    {method} +lowerBarrier()
+}
+
+note left of TollLaneComputer::checkIn
+    {pre: self.isBusy = false
+
+    } 
+end note
+
+note right of TollLaneComputer::readCreditCard
+    {pre: self.vehicleType <> null
+    } 
+end note
+
+note right of TollLaneComputer::processPayment
+    {def:
+        processPayment(creditCardInfo: CreditCard): Boolean = paymentWasSuccessful 
+    body:
+        self.paymentWasSuccessful
+    } 
+end note
+
+
+note right of TollLaneComputer::printTicket
+    {pre: 
+        self.wasPaymentSuccessful = true && self.ticket <> null
+    post:
+        printer.printTicket(ticket)
+    } 
+end note
+
+note left of TollLaneComputer::raiseBarrier
+    {pre: 
+        self.wasPaymentSuccessful = true && self.ticket <> null
+    post:
+        barrier^raiseBarrier()
+    }
+end note
+
+note right of TollLaneComputer::lowerBarrier
+    {pre: 
+        carPassed = true
+    post:
+        barrier^lowerBarrier()
+    }
+end note
+
+
+@enduml
