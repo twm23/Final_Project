@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+
+class TollLaneComputer {
+    {method} +chooseVehicleType()
+}
+
+' class StationServer {
+'     {method} +processCreditCardPayment()
+' }
+
+' class EnterpriseServer {
+'     {method} +processPayment()
+' }
+
+class TicketPrinter { 
+    {method} +printTicket()
+}
+
+class Barrier {
+    {method} +raiseBarrier()
+    {method} +lowerBarrier()
+}
+
+class CreditCardReader {
+    {method} +readCreditCard()
+}
+ 
+interface TicketPrinterToTollLaneComputer {
+    {method} +printTicket()
+}
+
+interface BarrierToTollLaneComputer {
+    {method} +raiseBarrier()
+    {method} +lowerBarrier()
+}
+
+interface StationServerToTollLaneComputer {
+    {method} +processPayment()
+}
+
+interface CreditCardReaderToTollLaneComputer {
+    {method} +processCreditCard()
+}
+
+TicketPrinter .l.|> TicketPrinterToTollLaneComputer
+Barrier .r.|> BarrierToTollLaneComputer
+CreditCardReader .l.|> CreditCardReaderToTollLaneComputer
+TollLaneComputer --> "1" CreditCardReaderToTollLaneComputer
+TollLaneComputer --> "1" BarrierToTollLaneComputer
+TollLaneComputer --> "1" TicketPrinterToTollLaneComputer
+TollLaneComputer  --> "1" StationServerToTollLaneComputer
+
+@enduml 

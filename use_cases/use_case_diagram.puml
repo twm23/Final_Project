@@ -1,0 +1,18 @@
+@startuml usecase
+left to right direction
+Actor Driver
+Actor "Enterprise Manager" as EM
+usecase "Check-in with credit card" as uc1
+usecase "Check-in with toll tag" as uc2
+usecase "Check-out with credit card" as uc3
+usecase "Check-out with toll tag" as uc4
+usecase "Change rate" as uc5
+usecase "Notify customers" as uc6
+
+Driver -- uc1
+Driver -- uc2
+Driver -- uc3
+Driver -- uc4
+EM -- uc5
+EM -- uc6
+@enduml 

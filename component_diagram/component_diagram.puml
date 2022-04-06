@@ -1,0 +1,53 @@
+@startuml
+skinparam Monochrome true
+skinparam Handwritten false
+skinparam Linetype ortho
+
+frame "Station" {
+    component "Station Server" as ss {
+        port " " as SSTL
+        port " " as SSES
+    }
+}
+
+frame "Enterprise" {
+    component "Enterprise Server" as es {
+        port " " as ESSS
+    }
+}
+
+frame "Toll lane" {
+    ' component "Touchscreen" as ts {
+    '     port " " as TSTL
+    ' }
+
+    component "Toll Lane computer" as tl {
+        port " " as TLTS
+        port " " as TLCRR
+        port " " as TLTP
+        port " " as TLB
+        port " " as TLSS
+        
+    }
+
+    component "Credit Card Reader" as ccr {
+        
+        port " " as CRRTL
+    }
+    component "Ticket Printer" as tp {
+        port " " as TPTL
+
+    }
+    component "Barrier" as b {
+        port " " as BTL
+    }
+}
+
+' TLTS -- TSTL 
+TLCRR -- CRRTL
+TLTP -- TPTL
+TLB -- BTL
+TLSS -- SSTL
+SSES -- ESSS
+
+@enduml
